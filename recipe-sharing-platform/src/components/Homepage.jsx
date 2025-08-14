@@ -13,7 +13,7 @@ const HomePage = () => {
     <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-8">Our Recipes</h1>
 
-      {/* Responsive Grid */}
+      
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {recipes.map((recipe) => (
           <div
