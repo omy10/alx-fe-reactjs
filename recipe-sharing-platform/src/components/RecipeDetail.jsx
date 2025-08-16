@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import recipesData from "../data.json";
 
 const RecipeDetail = () => {
   const { id } = useParams();
-  const recipe = recipesData.find((r) => r.id === parseInt(id));
+  const [recipe, setRecipe] = useState(null);
+
+  // Load recipe when component mounts or when ID changes
+  useEffect(() => {
+    const foundRecipe = recipesData.find((r) => r.id === parseInt(id));
+    setRecipe(foundRecipe);
+  }, [id]);
 
   if (!recipe) {
-    return <div className="p-6 text-center text-red-600">Recipe not found</div>;
+    return (
+      <div className="p-6 text-center text-red-600 font-semibold">
+        Recipe not found
+      </div>
+    );
   }
 
   return (
@@ -21,11 +31,14 @@ const RecipeDetail = () => {
       </Link>
 
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        {/* Image */}
         <img
           src={recipe.image}
           alt={recipe.title}
           className="w-full h-64 object-cover"
         />
+
+        {/* Content */}
         <div className="p-6">
           <h1 className="text-3xl font-bold text-gray-800 mb-4">
             {recipe.title}
