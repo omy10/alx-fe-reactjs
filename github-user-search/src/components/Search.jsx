@@ -63,6 +63,44 @@ const Search = () => {
       </button>
     </form>
 
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-xl mx-auto p-4 bg-white rounded shadow space-y-4"
+    >
+      <h2 className="text-xl font-semibold text-gray-700">Advanced GitHub Search</h2>
+      
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="w-full p-2 border rounded"
+      />
+
+      <input
+        type="text"
+        placeholder="Location"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        className="w-full p-2 border rounded"
+      />
+
+      <input
+        type="number"
+        placeholder="Min Repositories"
+        value={minRepos}
+        onChange={(e) => setMinRepos(e.target.value)}
+        className="w-full p-2 border rounded"
+      />
+
+      <button
+        type="submit"
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+      >
+        Search
+      </button>
+    </form>
+
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {user && (
